@@ -1,0 +1,19 @@
+<!--pages/auth/auth.wxml-->
+
+<view class="contianer">
+
+
+  <image src="{{prefix}}images/loadding.gif" class="logo"></image>
+	<button wx:if="{{!isAuthUser}}" open-type='getUserInfo' class="infoBtn" bindgetuserinfo="authAndLogin">
+   <view class="authBtn">点击微信授权登陆</view>
+	</button>
+
+   <!-- 获取手机号 -->
+ <button wx:if="{{isAuthUser&&!isAuthPhone}}"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" class="infoBtn">
+  <view class="authBtn">点击授权手机号码</view>
+ </button>
+
+</view>
+
+
+<my-loading id="loading" />

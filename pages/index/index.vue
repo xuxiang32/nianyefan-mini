@@ -11,8 +11,16 @@
 		</view>
 		<view class="jx-main-body">
 			<view class="button-container">
-				<image src="../../static/img/yqjiaren.png" mode="widthFix"></image>
-				<image src="../../static/img/kaishidiancai-index.png" mode="widthFix"></image>
+				<button open-type="share">
+					<view class='wechatImg'>
+						 <image src="../../static/img/yqjiaren.png"  mode="widthFix"></image>
+					 </view>
+				</button>
+				<button >
+					<view class='wechatImg'>
+						 <image src="../../static/img/kaishidiancai-index.png"  mode="widthFix"></image>
+					 </view>
+				</button>
 			</view>
 			<view class="step-container">
 				<view class="step-list">
@@ -46,6 +54,28 @@
 			return {
 				
 			};
+		},
+		methods:{
+			onShareAppMessage: function(res) {
+			    if (res.from === "button") {
+			      console.log(res)
+			      let that = this;
+				  let v = 'test';
+			      return {
+			        title: '匠心年夜饭',
+			        path: 'pages/index/index?t=' + 50 + '&v=' + v,
+			        success: function(res) {
+			          console.log(res, "转发成功")
+			
+			        },
+			        fail: function(res) {
+			          console.log(res, "转发失败")
+			        }
+			      }
+			    } else {
+			      console.log(res)
+			    }
+			  }
 		}
 	}
 </script>
@@ -90,6 +120,19 @@
 			justify-content: center;
 			align-items: center;
 			padding-bottom: 20upx;
+			& button{
+				width: fit-content;
+				height: auto;
+				padding: 0;
+				line-height: none;
+				border: none;
+				background: rgba(0,0,0,0);
+			}
+			& button::after{
+				width: fit-content;
+				height: fit-content;
+				border: none;
+			}
 			& image{
 				width: 250upx;
 			}

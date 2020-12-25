@@ -50,7 +50,7 @@
     "quickapp" : {},
     /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "wxb36b5d3c11919909",
+        "appid" : "wxbb294b27bbed8246",
         "setting" : {
             "urlCheck" : false,
             "es6" : true,

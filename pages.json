@@ -24,9 +24,14 @@
 		{
 			"path": "pages/ranking/ranking",
 			"style": {
-				"navigationBarTitleText": "匠心打造-酒瓶排行版"
+				"navigationStyle":"custom",
+				"navigationBarTextStyle": "white",
+				"navigationBarTitleText": "匠心打造-酒瓶排行版",
+				"navigationBarBackgroundColor": "#f33d37",
+				"backgroundColor": "#f33d37"
 			}
 		}
+	
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

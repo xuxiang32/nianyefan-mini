@@ -1,13 +1,13 @@
 <template>
 	<view class="jx-main-container">
 		<view class="jx-main-fixedBtn jx-main-hdgz">
-			<image :src="hdgzBtn" mode="heightFix"></image>
+			<image :src="hdgzBtn" mode="widthFix"></image>
 		</view>
 		<view class="jx-main-fixedBtn jx-main-wdjp" @click="handleTo('rank')">
-			<image :src="wdjpBtn" mode="heightFix"></image>
+			<image :src="wdjpBtn" mode="widthFix"></image>
 		</view>
 		<view class="jx-main-fixedBtn jx-main-gdhd">
-			<image :src="gdhdBtn" mode="heightFix"></image>
+			<image :src="gdhdBtn" mode="widthFix"></image>
 		</view>
 		<view class="jx-main-body">
 			<view class="button-container">
@@ -87,7 +87,7 @@
 <style lang="less" scoped>
 @import '../../static/less/global.less';
 .jx-main-container{
-	background: ~"url(@{baseImgUrl}indexBg.png) no-repeat center";
+	background: ~"url(@{baseImgUrl}indexBg.png) no-repeat center -30upx";
 	background-size:cover ;
 	position: absolute;
 	top: 0;
@@ -97,7 +97,7 @@
 	.jx-main-fixedBtn{
 		position: absolute;
 		& image{
-			height: 230upx;
+			width: 120upx;
 		}
 		&.jx-main-hdgz{
 			top: 13%;
@@ -105,7 +105,7 @@
 		}
 		&.jx-main-wdjp{
 			top: 15%;
-			left: 100upx;
+			left: 120upx;
 		}
 		&.jx-main-gdhd{
 			top: 20%;

@@ -25,5 +25,6 @@
 
 <style lang="less">
 	/*每个页面公共css */
+	@import './static/less/global.less';
 	@import './static/less/styles.less';
 </style>

@@ -85,8 +85,10 @@
 </script>
 
 <style lang="less" scoped>
+@import '../../static/less/global.less';
 .jx-main-container{
-	background: #FED893;
+	background: ~"url(@{baseImgUrl}indexBg.png) no-repeat center";
+	background-size:cover ;
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -123,7 +125,6 @@
 			flex-wrap: nowrap;
 			justify-content: center;
 			align-items: center;
-			padding-bottom: 20upx;
 			& image{
 				width: 250upx;
 			}

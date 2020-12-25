@@ -1,21 +1,21 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-		    "path" : "pages/index/index",
+		    "path" : "pages/table/table",
 		    "style" : {
-				"navigationBarTitleText": "匠心年夜饭",
-				"backgroundColor": "#FED893",
+				"navigationBarTitleText": "邀请家人组饭局",
+				"navigationBarBackgroundColor": "#F9724E",
+				"backgroundColor": "#F9724E",
 				"app-plus":{
 					"scrollIndicator":"none"
 				}
 			}
 		},
 		{
-		    "path" : "pages/table/table",
+		    "path" : "pages/index/index",
 		    "style" : {
-				"navigationBarTitleText": "邀请家人组饭局",
-				"navigationBarBackgroundColor": "#F9724E",
-				"backgroundColor": "#F9724E",
+				"navigationBarTitleText": "匠心年夜饭",
+				"backgroundColor": "#FED893",
 				"app-plus":{
 					"scrollIndicator":"none"
 				}

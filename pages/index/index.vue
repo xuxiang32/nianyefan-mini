@@ -1,7 +1,7 @@
 <template>
 	<view class="jx-main-container">
 		<view class="jx-main-fixedBtn jx-main-hdgz">
-			<image src="../../static/img/hdgz-btn.png" mode="heightFix"></image>
+			<image :src="api.baseImgUri + 'hdgz-btn.png'" mode="heightFix"></image>
 		</view>
 		<view class="jx-main-fixedBtn jx-main-wdjp">
 			<image src="../../static/img/wdjp-btn.png" mode="heightFix"></image>
@@ -16,7 +16,7 @@
 						 <image src="../../static/img/yqjiaren.png"  mode="widthFix"></image>
 					 </view>
 				</button>
-				<button >
+				<button @click="startOrder()">
 					<view class='wechatImg'>
 						 <image src="../../static/img/kaishidiancai-index.png"  mode="widthFix"></image>
 					 </view>
@@ -24,23 +24,9 @@
 			</view>
 			<view class="step-container">
 				<view class="step-list">
-					<!-- <view class="step-list-container">
-						<view class="step-list-l">Step1</view>
-						<view class="step-list-r">
-							<view class="step-list-r-header">发起组队PK</view>
-							<view class="step-list-r-des">发起组队PK发起组队发起组队发起组队发起组队发起组队发起组队发起组队发起组队</view>
-						</view>
-					</view> -->
 					<image src="../../static/img/step1.png" mode="widthFix" ></image>
 				</view>
 				<view class="step-list">
-					<!-- <view class="step-list-container">
-						<view class="step-list-l">Step2</view>
-						<view class="step-list-r">
-							<view class="step-list-r-header">发起组队PK</view>
-							<view class="step-list-r-des">发起组队PK发起组队发起组队发起组队发起组队发起组队发起组队发起组队发起组队</view>
-						</view>
-					</view> -->
 					<image src="../../static/img/step2.png" mode="widthFix"></image>
 				</view>
 			</view>
@@ -49,6 +35,7 @@
 </template>
 
 <script>
+	import api from '../../utils/api.js'
 	export default {
 		data() {
 			return {
@@ -56,26 +43,32 @@
 			};
 		},
 		methods:{
-			onShareAppMessage: function(res) {
-			    if (res.from === "button") {
-			      console.log(res)
-			      let that = this;
+			// 分享
+			onShareAppMessage: (res) => {
+				if (res.from === "button") {
+				  console.log(res)
+				  let that = this;
 				  let v = 'test';
-			      return {
-			        title: '匠心年夜饭',
-			        path: 'pages/index/index?t=' + 50 + '&v=' + v,
-			        success: function(res) {
-			          console.log(res, "转发成功")
+				  return {
+					title: '匠心年夜饭',
+					path: 'pages/index/index?t=' + 50 + '&v=' + v,
+					success: function(res) {
+					  console.log(res, "转发成功")
 			
-			        },
-			        fail: function(res) {
-			          console.log(res, "转发失败")
-			        }
-			      }
-			    } else {
-			      console.log(res)
-			    }
-			  }
+					},
+					fail: function(res) {
+					  console.log(res, "转发失败")
+					}
+				  }
+				} else {
+				  console.log(res)
+				}
+			},
+			startOrder: () => {
+				uni.navigateTo({
+				    url: '../table/table'
+				});
+			}
 		}
 	}
 </script>

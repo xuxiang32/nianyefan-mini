@@ -1,33 +1,33 @@
 <template>
 	<view class="jx-main-container">
 		<view class="jx-main-fixedBtn jx-main-hdgz">
-			<image :src="api.baseImgUri + 'hdgz-btn.png'" mode="heightFix"></image>
+			<image :src="hdgzBtn" mode="heightFix"></image>
 		</view>
 		<view class="jx-main-fixedBtn jx-main-wdjp" @click="handleTo('rank')">
-			<image src="../../static/img/wdjp-btn.png" mode="heightFix"></image>
+			<image :src="wdjpBtn" mode="heightFix"></image>
 		</view>
 		<view class="jx-main-fixedBtn jx-main-gdhd">
-			<image src="../../static/img/gdhd-btn.png" mode="heightFix"></image>
+			<image :src="gdhdBtn" mode="heightFix"></image>
 		</view>
 		<view class="jx-main-body">
 			<view class="button-container">
 				<button open-type="share">
 					<view class='wechatImg'>
-						 <image src="../../static/img/yqjiaren.png"  mode="widthFix"></image>
+						 <image :src="familyBtn"  mode="widthFix"></image>
 					 </view>
 				</button>
 				<button @click="startOrder()">
 					<view class='wechatImg'>
-						 <image src="../../static/img/kaishidiancai-index.png"  mode="widthFix"></image>
+						 <image :src="startOrderBtn"  mode="widthFix"></image>
 					 </view>
 				</button>
 			</view>
 			<view class="step-container">
 				<view class="step-list">
-					<image src="../../static/img/step1.png" mode="widthFix" ></image>
+					<image :src="step1" mode="widthFix" ></image>
 				</view>
 				<view class="step-list">
-					<image src="../../static/img/step2.png" mode="widthFix"></image>
+					<image :src="step2" mode="widthFix"></image>
 				</view>
 			</view>
 		</view>
@@ -35,11 +35,18 @@
 </template>
 
 <script>
-	import api from '../../utils/api.js'
+	const baseImgUrl = getApp().globalData.baseImgUri
 	export default {
 		data() {
+			console.log('baseImgUrl', baseImgUrl)
 			return {
-
+				hdgzBtn: baseImgUrl	+ 'hdgz-btn.png',
+				wdjpBtn: baseImgUrl	+ 'wdjp-btn.png',
+				gdhdBtn: baseImgUrl	+ 'gdhd-btn.png',
+				familyBtn: baseImgUrl	+ 'yqjiaren.png',
+				startOrderBtn: baseImgUrl	+ 'kaishidiancai-index.png',
+				step1: baseImgUrl	+ 'step1.png',
+				step2: baseImgUrl	+ 'step2.png'
 			}
 		},
 		methods:{
@@ -119,6 +126,13 @@
 			padding-bottom: 20upx;
 			& image{
 				width: 250upx;
+			}
+			& button{
+				background: rgba(0,0,0,0);
+			}
+			& button::after{
+				width: fit-content;
+				height: fit-content;
 			}
 		}
 		.step-container{

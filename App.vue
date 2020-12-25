@@ -23,8 +23,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="less">
 	/*每个页面公共css */
-	@import './static/uni.scss';
-	@import './static/style.scss';
+	@import './static/less/styles.less';
 </style>

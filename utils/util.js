@@ -362,10 +362,10 @@ let onShareAppMessage = function (res) {
       msgType: "SHARE"
     },
     success: function (res) {
-      
+
     },
     complete: function () {
-      
+
     }
   })
   return {

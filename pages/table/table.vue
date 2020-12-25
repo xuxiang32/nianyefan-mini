@@ -1,5 +1,8 @@
 <template>
 	<view>
+		<view class="table-banner">
+			<image src="" mode=""></image>
+		</view>
 		<view class="table-container">
 			<view class="table-body">
 				<view class="table-person">
@@ -49,6 +52,7 @@
 </template>
 
 <script>
+	import baseImgUri from '../../utils/api.js';
 	export default {
 		data() {
 			return {

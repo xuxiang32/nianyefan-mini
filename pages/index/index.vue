@@ -77,7 +77,7 @@
 	}
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .jx-main-container{
 	background: #FED893;
 	position: absolute;

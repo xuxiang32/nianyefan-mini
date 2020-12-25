@@ -1,5 +1,5 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [
 		{
 		    "path" : "pages/index/index",
 		    "style" : {
@@ -24,7 +24,7 @@
 		{
 			"path": "pages/ranking/ranking",
 			"style": {
-				"navigationBarTitleText": "匠心打造-排行版"
+				"navigationBarTitleText": "匠心打造-酒瓶排行版"
 			}
 		}
 	],

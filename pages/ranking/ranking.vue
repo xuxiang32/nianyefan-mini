@@ -3,10 +3,10 @@
 		<view class="rank-main-body">
 			<div class="rankTop">
 				<div class="rankTopBg">
-					<image src="../../static/img/paimTop.png" mode="widthFix"></image>
+					<image src="rankTop" mode="widthFix"></image>
 				</div>
 				<div class="rankMine">
-					<image src="../../static/img/rules.png" mode="heightFix"></image>
+					<image src="rankRule" mode="heightFix"></image>
 				</div>
 			</div>
 		</view>
@@ -14,11 +14,13 @@
 </template>
 
 <script>
-  import rankTopBg from '../'
+ import baseImgUrl from '../../utils/util.js'
 	export default {
 		data() {
+			console.info('baseImgUrl', baseImgUrl)
 			return {
-
+				rankTop: baseImgUrl + '/paimTop.png',
+				rankRule: baseImgUrl + '/rules.png'
 			}
 		}
 	}

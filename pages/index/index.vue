@@ -63,6 +63,18 @@
 		& image{
 			height: 230upx;
 		}
+		&.jx-main-hdgz{
+			top: 13%;
+			left: 20upx;
+		}
+		&.jx-main-wdjp{
+			top: 15%;
+			left: 100upx;
+		}
+		&.jx-main-gdhd{
+			top: 20%;
+			right: 20upx;
+		}
 	}
 	.jx-main-body{
 		position: absolute;

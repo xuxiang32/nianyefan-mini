@@ -3,7 +3,7 @@
 		<view class="jx-main-fixedBtn jx-main-hdgz">
 			<image :src="api.baseImgUri + 'hdgz-btn.png'" mode="heightFix"></image>
 		</view>
-		<view class="jx-main-fixedBtn jx-main-wdjp">
+		<view class="jx-main-fixedBtn jx-main-wdjp" @click="handleTo('rank')">
 			<image src="../../static/img/wdjp-btn.png" mode="heightFix"></image>
 		</view>
 		<view class="jx-main-fixedBtn jx-main-gdhd">
@@ -39,36 +39,40 @@
 	export default {
 		data() {
 			return {
-				
-			};
+
+			}
 		},
 		methods:{
-			// 分享
-			onShareAppMessage: (res) => {
-				if (res.from === "button") {
-				  console.log(res)
-				  let that = this;
+			onShareAppMessage: function(res) {
+			    if (res.from === "button") {
+			      console.log(res)
+			      let that = this;
 				  let v = 'test';
-				  return {
-					title: '匠心年夜饭',
-					path: 'pages/index/index?t=' + 50 + '&v=' + v,
-					success: function(res) {
-					  console.log(res, "转发成功")
-			
-					},
-					fail: function(res) {
-					  console.log(res, "转发失败")
-					}
-				  }
-				} else {
-				  console.log(res)
-				}
-			},
-			startOrder: () => {
-				uni.navigateTo({
-				    url: '../table/table'
-				});
-			}
+			      return {
+			        title: '匠心年夜饭',
+			        path: 'pages/index/index?t=' + 50 + '&v=' + v,
+			        success: function(res) {
+			          console.log(res, "转发成功")
+
+			        },
+			        fail: function(res) {
+			          console.log(res, "转发失败")
+			        }
+			      }
+			    } else {
+			      console.log(res)
+			    }
+			  },
+      handleTo(val){
+        uni.navigateTo({
+          url: '/pages/ranking/ranking',
+        })
+      },
+      startOrder: () => {
+        uni.navigateTo({
+          url: '../table/table'
+        });
+      }
 		}
 	}
 </script>
@@ -113,19 +117,6 @@
 			justify-content: center;
 			align-items: center;
 			padding-bottom: 20upx;
-			& button{
-				width: fit-content;
-				height: auto;
-				padding: 0;
-				line-height: none;
-				border: none;
-				background: rgba(0,0,0,0);
-			}
-			& button::after{
-				width: fit-content;
-				height: fit-content;
-				border: none;
-			}
 			& image{
 				width: 250upx;
 			}
@@ -160,10 +151,10 @@
 						margin-left: 40rpx;
 						flex: 1;
 						.step-list-r-header{
-							
+
 						}
 						.step-list-r-des{
-							font-size: 18upx;   
+							font-size: 18upx;
 							color: #FF3E3C;
 						}
 					}
@@ -171,8 +162,8 @@
 			}
 		}
 	}
-	
-	
+
+
 }
 
 </style>

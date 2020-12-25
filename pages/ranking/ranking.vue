@@ -3,10 +3,10 @@
 		<view class="rank-main-body">
 			<div class="rankTop">
 				<div class="rankTopBg">
-					<image src="rankTop" mode="widthFix"></image>
+					<image :src="rankTop" mode="widthFix"></image>
 				</div>
 				<div class="rankMine">
-					<image src="rankRule" mode="heightFix"></image>
+					<image :src="rankRule" mode="heightFix"></image>
 				</div>
 			</div>
 		</view>
@@ -14,7 +14,7 @@
 </template>
 
 <script>
- import baseImgUrl from '../../utils/util.js'
+const baseImgUrl = getApp().globalData.baseImgUri
 	export default {
 		data() {
 			console.info('baseImgUrl', baseImgUrl)

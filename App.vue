@@ -17,7 +17,8 @@
 			httpPrefix: 'https://www.dalajiaopm.com/integral-mall-api/',
 			couponHttp:'https://www.dalajiaopm.com/ahxh-coupon-api/',
 			activityUrl: 'https://www.dalajiaopm.com/links-software-web-activity/',
-			memberUrl: 'https://www.dalajiaopm.com/'
+			memberUrl: 'https://www.dalajiaopm.com/',
+			baseImgUri: 'https://event.1shang.com/links-software-web-file/integralMall/jiangxin/'
 		}
 	}
 </script>

@@ -401,9 +401,6 @@ let missonGet = function (missonType) {
     }
   })
 }
-
-const baseImgUri = 'https://event.1shang.com/links-software-web-file/integralMall/jiangxin/'
-
 module.exports = {
   formatTime: formatTime,
   requestBySessionId: requestBySessionId,
@@ -414,6 +411,5 @@ module.exports = {
   formatNumber: formatNumber,
   getUserInfo: getUserInfo,
   onShareAppMessage: onShareAppMessage,
-  missonGet: missonGet,
-  baseImgUrl: baseImgUrl
+  missonGet: missonGet
 }

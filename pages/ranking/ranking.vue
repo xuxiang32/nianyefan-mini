@@ -2,63 +2,74 @@
 	<view class="main-container">
 		<NavBar :backBtn="true" title="酒瓶排行榜" background="rgba(0,0,0,0)" color="#FFF"></NavBar>
 		<view class="rank-main-body">
-			<div class="rankTop">
-				<div class="rankTopBg">
+			<view class="rankTop">
+				<view class="rankTopBg">
 					<image :src="rankTop" mode="widthFix"></image>
-				</div>
-				<div class="rankrules">
+				</view>
+				<view class="rankrules">
 					<image :src="rankRule" mode="heightFix"></image>
-				</div>
-				<div class="rankMine">
+				</view>
+				<view class="rankMine">
 					<image :src="rankMine" mode="heightFix"></image>
-				</div>
-				<div class="rankLastTime">
+				</view>
+				<view class="rankLastTime">
 					<span>2月26日12：00开奖</span>
-				</div>
-				<div class="rankBack">
-					<div class="backWrap">
+				</view>
+				<view class="rankBack">
+					<view class="backWrap">
 						<span>{{number}}</span>
 						<image :src="rankBack" mode="heightFix"></image>
-					</div>
-				</div>
-			</div>
-			<div class="ranktCon">
-			<div class="rankTWrap">
-				<div class="rankTIcon">{{userPm.name}}</div>
-				<div class="rankTPm">{{'第'+userPm.pm+'名'}}</div>
-				<div class="rankTjpNum">
+					</view>
+				</view>
+			</view>
+			<view class="ranktCon">
+			<view class="rankTWrap">
+				<view class="rankTIcon">{{userPm.name}}</view>
+				<view class="rankTPm">{{'第'+userPm.pm+'名'}}</view>
+				<view class="rankTjpNum">
 					<image :src="jiupIcon" mode="heightFix"></image>
 				{{userPm.jpNum}}
-				</div>
-			</div>
-			<div class="rankBorder">
+				</view>
+			</view>
+			<view class="rankBorder">
 				<image :src="rankBor" mode="widthFix"></image>
-			</div>
-			<div class="rankTWrap">
-				<div class="rankTPm small">
+			</view>
+			<view class="rankTWrap">
+				<view class="rankTPm small">
 					<image :src="pm" mode="heightFix"></image>
-				</div>
-				<div class="rankTIcon small">
+				</view>
+				<view class="rankTIcon small">
 					<image :src="fz" mode="heightFix"></image>
-				</div>
-				<div class="rankTjpNum small">
+				</view>
+				<view class="rankTjpNum small">
 					<image :src="jp" mode="heightFix"></image>
-				</div>
-			</div>
-			<div class="rankTable" v-for="(item, index) in pmList" :key="index">
-				<div class="rankTWrap">
-					<div class="rankTPm">
+				</view>
+			</view>
+			<view class="rankTable" v-for="(item, index) in pmList" :key="index">
+				<view class="rankTWrap">
+					<view class="rankTPm">
 						<image :src="showIcon(index+1)" mode="heightFix"></image>
-						<span v-if="index > 2">{{index}}</span>
-					</div>
-					<div class="rankTIcon">{{item.name}}</div>
-					<div class="rankTjpNum">
+						<span v-if="index > 2">{{index+1}}</span>
+					</view>
+					<view class="rankTIcon">{{item.name}}</view>
+					<view class="rankTjpNum">
 						<image :src="jiupIcon" mode="heightFix"></image>
 					{{item.jpNum}}
-					</div>
-				</div>
-			</div>
-			</div>
+					</view>
+				</view>
+			</view>
+			</view>
+			<view class="rankPrizes">
+				<view class="rankPone">
+					<image :src="prize1" mode="widthFix"></image>
+				</view>
+				<view class="rankPone">
+					<image :src="prize2" mode="widthFix"></image>
+				</view>
+				<view class="rankPone">
+					<image :src="prize3" mode="widthFix"></image>
+				</view>
+			</view>
 		</view>
 	</view>
 </template>
@@ -85,6 +96,9 @@ const baseImgUrl = getApp().globalData.baseImgUri
 				pm: baseImgUrl + '/paim.png',
 				fz: baseImgUrl + '/fanzhuo.png',
 				jp: baseImgUrl + '/jiup.png',
+				prize1: baseImgUrl + '/aword1.png',
+				prize2: baseImgUrl + '/aword2.png',
+				prize3: baseImgUrl + '/aword3.png',
 				number: 9999,
 				userPm: {
 					id: 1,
@@ -158,13 +172,13 @@ const baseImgUrl = getApp().globalData.baseImgUri
 		.rankTop{
 			width: 100%;
 			position: relative;
-			height: 460upx;
+			height: 600upx;
 			.rankTopBg{
 				width: 100%;
-				height: 170upx;
+				height: 230upx;
 				position: absolute;
 				left: 0;
-				top: 0;
+				top: 140upx;
 				z-index: 2;
 				image{
 					width: 100%
@@ -173,7 +187,7 @@ const baseImgUrl = getApp().globalData.baseImgUri
 			.rankMine{
 				position: absolute;
 				left: 13%;
-				top: 170upx;
+				top: 310upx;
 				z-index: 3;
 				height: 290upx;
 				width: 15%;
@@ -184,7 +198,7 @@ const baseImgUrl = getApp().globalData.baseImgUri
 			.rankrules{
 				position: absolute;
 				left: 5upx;
-				top: 150upx;
+				top: 290upx;
 				z-index: 3;
 				height: 290upx;
 				width: 15%;
@@ -202,7 +216,7 @@ const baseImgUrl = getApp().globalData.baseImgUri
 				margin-left: -162upx;
 				text-align: center;
 				z-index: 4;
-				top: 340upx;
+				top: 450upx;
 				span{
 					color: #fff;
 					font-size: 14px;
@@ -212,7 +226,7 @@ const baseImgUrl = getApp().globalData.baseImgUri
 			.rankBack{
 				position: absolute;
 				right: 10upx;
-				top: 340upx;
+				top: 460upx;
 				z-index: 5;
 				image{
 					width:132upx;
@@ -224,6 +238,14 @@ const baseImgUrl = getApp().globalData.baseImgUri
 						position: absolute;
 						right: 0;
 						top: -10upx;
+						height: 20upx;
+						background-color: #862824;
+						border: 1upx solid #fed8ae;
+						padding: 8upx 16upx;
+						border-radius: 30upx;
+						color: #fed8ae;
+						font-size: 20upx;
+						line-height: 16upx;
 					}
 				}
 			}
@@ -231,8 +253,15 @@ const baseImgUrl = getApp().globalData.baseImgUri
 		.ranktCon{
 			margin: 24upx;
 			padding: 12upx;
-			background-color: #F0AD4E;
-			border: 1px solid #333333;
+			background-color: #ffd8ae;
+			border: 1px solid #862824;
+		}
+		.rankTable{
+			border-bottom: 1px solid #c1996b;
+			padding: 20upx;
+			&:last-child{
+				border: none;
+			}
 		}
 		.rankTWrap{
 			display: flex;
@@ -240,13 +269,30 @@ const baseImgUrl = getApp().globalData.baseImgUri
 			.rankTPm{
 				width: 25%;
 				text-align: center;
+				position: relative;
+				color: #862824;
+				font-size: 24upx;
+				font-weight: bold;
 				image{
-					height: 40upx;
+					height: 60upx;
+				}
+				span{
+					position: absolute;
+					top: 6upx;
+					left: 50%;
+					margin-left: -30upx;
+					color: #862824;
+					width: 60upx;
+					text-align: center;
+					font-size: 24upx;
+					font-weight: bold;
 				}
 			}
 			.rankTIcon{
 				text-align: left;
-				width: 50%
+				width: 50%;
+				color: #862824;
+				font-weight: 600;
 			}
 			.rankTjpNum{
 				width: 25%;
@@ -258,7 +304,9 @@ const baseImgUrl = getApp().globalData.baseImgUri
 				}
 			}
 			.small{
-			
+				.rankTjpNum{
+					text-align: center;
+				}
 				image{
 				 height: 36upx;
 				}
@@ -267,6 +315,15 @@ const baseImgUrl = getApp().globalData.baseImgUri
 	.rankBorder{
 		width: 100%;
 		heigth: 6upx;
+		margin: 0 0 24upx 0;
+	}
+	.rankPrizes{
+		padding: 0 24upx;
+		.rankPone{
+			image{
+				width: 100%;
+			}
+		}
 	}
 	}
 </style>

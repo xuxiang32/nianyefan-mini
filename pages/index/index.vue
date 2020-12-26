@@ -72,7 +72,7 @@
 			  },
       handleTo(val){
         uni.navigateTo({
-          url: '/pages/ranking/ranking',
+          url: '../ranking/ranking',
         })
       },
       startOrder: () => {
@@ -97,11 +97,11 @@
 	.jx-main-fixedBtn{
 		position: absolute;
 		& image{
-			width: 120upx;
+			width: 138upx;
 		}
 		&.jx-main-hdgz{
 			top: 13%;
-			left: 20upx;
+			left: 10upx;
 		}
 		&.jx-main-wdjp{
 			top: 15%;
@@ -109,7 +109,7 @@
 		}
 		&.jx-main-gdhd{
 			top: 20%;
-			right: 20upx;
+			right: 10upx;
 		}
 	}
 	.jx-main-body{
@@ -142,10 +142,6 @@
 			.step-list{
 				width: 100%;
 				height: auto;
-				// border-radius: 20px;
-				// border: solid 6upx #B6312F;
-				// padding: 8upx;
-				// background-color: #FCDAB5;
 				margin-bottom: 15upx;
 				& image{
 					width: 100%;

@@ -1,7 +1,15 @@
 <template>
-	<view>
+	<view class="table-main">
 		<view class="table-banner">
-			<image src="" mode=""></image>
+			<view class="jx-main-fixedBtn jx-main-hdgz">
+				<image :src="hdgzBtn" mode="widthFix"></image>
+			</view>
+			<view class="jx-main-fixedBtn jx-main-wdjp" @click="handleTo('rank')">
+				<image :src="wdjpBtn" mode="widthFix"></image>
+			</view>
+			<view class="jx-main-fixedBtn jx-main-gdhd">
+				<image :src="gdhdBtn" mode="widthFix"></image>
+			</view>
 		</view>
 		<view class="table-container">
 			<view class="table-body">
@@ -47,22 +55,69 @@
 				</view>
 			</view>
 		</view>
-
+		<view class="step-container">
+			<view class="step-list">
+				<image :src="step1" mode="widthFix" ></image>
+			</view>
+			<view class="step-list">
+				<image :src="step2" mode="widthFix"></image>
+			</view>
+		</view>
 	</view>
 </template>
 
 <script>
-	import baseImgUri from '../../utils/api.js';
+	const baseImgUrl = getApp().globalData.baseImgUri
 	export default {
 		data() {
 			return {
-				
+				paimTop: baseImgUrl	+ 'paimTop.png',
+				hdgzBtn: baseImgUrl	+ 'hdgz-btn.png',
+				wdjpBtn: baseImgUrl	+ 'wdjp-btn.png',
+				gdhdBtn: baseImgUrl	+ 'gdhd-btn.png',
 			};
 		}
 	}
 </script>
 
 <style lang="less" scoped>
+	@import '../../static/less/global.less';
+.table-main{
+	width: 100%;
+	background: ~"url(@{baseImgUrl}orderBg2.png) no-repeat center -10upx";
+	background-size:cover ;
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	.table-banner{
+		width: 100%;
+		height: 330upx;
+		position: relative;
+		& image{
+			width: 100%;
+		}
+		.jx-main-fixedBtn{
+			position: absolute;
+			& image{
+				width: 92upx;
+			}
+			&.jx-main-hdgz{
+				bottom: -20%;
+				left: 20upx;
+			}
+			&.jx-main-wdjp{
+				bottom: -30upx;
+				left: 120upx;
+			}
+			&.jx-main-gdhd{
+				bottom: -170upx;
+				right: 10upx;
+			}
+		}
+	}
+}
 .table-container{
 	width: 100%;
 	height: 100%;
@@ -135,7 +190,42 @@
 			transform: rotate(-315deg);
 		}
 	}
-	
+	.step-container{
+		width: 100%;
+		height: auto;
+		.step-list{
+			width: 100%;
+			height: auto;
+			margin-bottom: 15upx;
+			& image{
+				width: 100%;
+			}
+			.step-list-container{
+				border: solid 1upx #B6312F;
+				padding: 10upx 40upx;
+				display: flex;
+				border-radius: 15px;
+				flex-wrap: nowrap;
+				justify-content: center;
+				align-items: center;
+				.step-list-l{
+					width: 100upx;
+					height: 100upx;
+				}
+				.step-list-r{
+					margin-left: 40rpx;
+					flex: 1;
+					.step-list-r-header{
+
+					}
+					.step-list-r-des{
+						font-size: 18upx;
+						color: #FF3E3C;
+					}
+				}
+			}
+		}
+	}
 }
 
 </style>

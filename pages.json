@@ -14,8 +14,9 @@
 		    "path" : "pages/table/table",
 		    "style" : {
 				"navigationBarTitleText": "邀请家人组饭局",
-				"navigationBarBackgroundColor": "#F9724E",
-				"backgroundColor": "#F9724E",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#FA7950",
+				"backgroundColor": "#EF1B29",
 				"app-plus":{
 					"scrollIndicator":"none"
 				}
@@ -31,10 +32,10 @@
 				"backgroundColor": "#f33d37"
 			}
 		}
-	
+
 	],
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
+		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "匠心打造-年夜饭",
 		"navigationBarBackgroundColor": "#FED893",
 		"backgroundColor": "#F8F8F8"

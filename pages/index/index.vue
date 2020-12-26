@@ -1,5 +1,6 @@
 <template>
-	<view class="jx-main-container">
+	<view class="main-container">
+		<NavBar :backBtn="true" title="匠心年夜饭" background="rgba(0,0,0,0)" color="#FFF"></NavBar>
 		<view class="jx-main-fixedBtn jx-main-hdgz">
 			<image :src="hdgzBtn" mode="widthFix"></image>
 		</view>
@@ -38,7 +39,6 @@
 	const baseImgUrl = getApp().globalData.baseImgUri
 	export default {
 		data() {
-			console.log('baseImgUrl', baseImgUrl)
 			return {
 				hdgzBtn: baseImgUrl	+ 'hdgz-btn.png',
 				wdjpBtn: baseImgUrl	+ 'wdjp-btn.png',
@@ -46,7 +46,8 @@
 				familyBtn: baseImgUrl	+ 'yqjiaren.png',
 				startOrderBtn: baseImgUrl	+ 'kaishidiancai-index.png',
 				step1: baseImgUrl	+ 'step1.png',
-				step2: baseImgUrl	+ 'step2.png'
+				step2: baseImgUrl	+ 'step2.png',
+				backTo: baseImgUrl + '/arrowRight.png',
 			}
 		},
 		methods:{
@@ -70,30 +71,40 @@
 			      console.log(res)
 			    }
 			  },
-      handleTo(val){
-        uni.navigateTo({
-          url: '../ranking/ranking',
-        })
-      },
-      startOrder: () => {
-        uni.navigateTo({
-          url: '../table/table'
-        });
-      }
+			  handleTo(val){
+				  switch(val){
+					  case 'index':
+						  uni.navigateTo({
+							url: '../index/index',
+						  })
+						  break;
+					  case 'rank':
+						  uni.navigateTo({
+							url: '../ranking/ranking',
+						  })
+						  break;
+					  default:
+						  uni.navigateTo({
+							url: '../index/index',
+						  })
+						  break;
+					}
+			  },
+			  startOrder: () => {
+				uni.navigateTo({
+				  url: '../table/table'
+				});
+			  }
 		}
 	}
 </script>
 
 <style lang="less" scoped>
 @import '../../static/less/global.less';
-.jx-main-container{
-	background: ~"url(@{baseImgUrl}indexBg.png) no-repeat center -30upx";
+.main-container{
+	background:~"url(@{baseImgUrl}indexBg.png) no-repeat center -30upx" ;
 	background-size:cover ;
-	position: absolute;
-	top: 0;
-	right: 0;
-	left: 0;
-	bottom: 0;
+	height: auto;
 	.jx-main-fixedBtn{
 		position: absolute;
 		& image{
@@ -113,13 +124,7 @@
 		}
 	}
 	.jx-main-body{
-		position: absolute;
-		height: auto;
-		bottom: 40px;
-		left: 0;
-		right: 0;
-		box-sizing: border-box;
-		padding: 0 40upx;
+		padding: 1050upx 40upx 0;
 		.button-container{
 			display: flex;
 			flex-wrap: nowrap;

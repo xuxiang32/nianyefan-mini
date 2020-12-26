@@ -1,9 +1,6 @@
 <template>
-	<view class="rank-main-container">
-		<view class="rankheader"  @click="handleTo('index')">
-			<image :src="backTo" mode="heightFix"></image>
-			<span>酒瓶排行榜</span>
-		</view>
+	<view class="main-container">
+		<NavBar :backBtn="true" title="酒瓶排行榜" background="rgba(0,0,0,0)" color="#FFF"></NavBar>
 		<view class="rank-main-body">
 			<div class="rankTop">
 				<div class="rankTopBg">
@@ -156,25 +153,8 @@ const baseImgUrl = getApp().globalData.baseImgUri
 
 <style lang="less" scoped>
 	@import '../../static/less/global.less';
-	.rank-main-container{
-		width: 100%;
-		height: 100vh;
+	.main-container{
 		background: ~"url(@{baseImgUrl}bgRed.png) no-repeat center";
-		background-color: #ef1b29;
-		background-size:cover ;
-		.rankheader{
-			height: 80upx;
-			color: #fff;
-			padding: 110upx 24upx 20upx 24upx;
-			image{
-				height: 30upx;
-				transform: rotate(180deg);
-			}
-			span{
-				padding: 0 0 0 24upx;
-				font-size: 20px;
-			}
-		}
 		.rankTop{
 			width: 100%;
 			position: relative;

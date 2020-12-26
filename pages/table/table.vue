@@ -1,5 +1,6 @@
 <template>
 	<view class="table-main">
+		<NavBar :backBtn="true" title="邀请家人组饭局" background="rgba(0,0,0,0)" color="#FFF"></NavBar>
 		<view class="table-banner">
 			<view class="jx-main-fixedBtn jx-main-hdgz">
 				<image :src="hdgzBtn" mode="widthFix"></image>

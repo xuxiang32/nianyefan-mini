@@ -1,6 +1,16 @@
 {
 	"pages": [
 		{
+			"path": "pages/ranking/ranking",
+			"style": {
+				"navigationStyle":"custom",
+				"navigationBarTextStyle": "white",
+				"navigationBarTitleText": "匠心打造-酒瓶排行版",
+				"navigationBarBackgroundColor": "#f33d37",
+				"backgroundColor": "#f33d37"
+			}
+		},
+		{
 		    "path" : "pages/index/index",
 		    "style" : {
 				"navigationBarTitleText": "匠心年夜饭",
@@ -21,17 +31,8 @@
 					"scrollIndicator":"none"
 				}
 			}
-		},
-		{
-			"path": "pages/ranking/ranking",
-			"style": {
-				"navigationStyle":"custom",
-				"navigationBarTextStyle": "white",
-				"navigationBarTitleText": "匠心打造-酒瓶排行版",
-				"navigationBarBackgroundColor": "#f33d37",
-				"backgroundColor": "#f33d37"
-			}
 		}
+		
 
 	],
 	"globalStyle": {

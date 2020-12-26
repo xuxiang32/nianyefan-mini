@@ -2,6 +2,7 @@
 	<view class="table-main">
 		<NavBar :backBtn="true" title="邀请家人组饭局" background="rgba(0,0,0,0)" color="#FFF"></NavBar>
 		<view class="table-banner">
+			<image :src="paimTop" mode="widthFix"></image>
 			<view class="jx-main-fixedBtn jx-main-hdgz">
 				<image :src="hdgzBtn" mode="widthFix"></image>
 			</view>
@@ -85,7 +86,7 @@
 	@import '../../static/less/global.less';
 .table-main{
 	width: 100%;
-	background: ~"url(@{baseImgUrl}orderBg2.png) no-repeat center -10upx";
+	background: ~"url(@{baseImgUrl}bgRed.png) no-repeat center";
 	background-size:cover ;
 	position: absolute;
 	top: 0;
@@ -93,8 +94,9 @@
 	left: 0;
 	bottom: 0;
 	.table-banner{
+		margin-top: 180upx;
 		width: 100%;
-		height: 330upx;
+		height: 513upx;
 		position: relative;
 		& image{
 			width: 100%;
@@ -102,11 +104,11 @@
 		.jx-main-fixedBtn{
 			position: absolute;
 			& image{
-				width: 92upx;
+				width: 138upx;
 			}
 			&.jx-main-hdgz{
-				bottom: -20%;
-				left: 20upx;
+				top: 100upx;
+				left: 0;
 			}
 			&.jx-main-wdjp{
 				bottom: -30upx;

@@ -12,6 +12,16 @@
 			}
 		},
 		{
+		    "path" : "pages/table/table",
+		    "style" : {
+				"navigationBarTitleText": "邀请家人组饭局",
+				"navigationStyle":"custom",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#FA7950",
+				"backgroundColor": "#EF1B29"
+			}
+		},
+		{
 			"path": "pages/ranking/ranking",
 			"style": {
 				"navigationStyle":"custom",
@@ -20,19 +30,8 @@
 				"navigationBarBackgroundColor": "#f33d37",
 				"backgroundColor": "#f33d37"
 			}
-		},
-		{
-		    "path" : "pages/table/table",
-		    "style" : {
-				"navigationBarTitleText": "邀请家人组饭局",
-				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#FA7950",
-				"backgroundColor": "#EF1B29",
-				"app-plus":{
-					"scrollIndicator":"none"
-				}
-			}
 		}
+		
 		
 
 	],

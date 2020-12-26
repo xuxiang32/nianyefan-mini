@@ -111,15 +111,15 @@
 			width: 138upx;
 		}
 		&.jx-main-hdgz{
-			top: 13%;
-			left: 10upx;
+			top: 300upx;
+			left: 0upx;
 		}
 		&.jx-main-wdjp{
-			top: 15%;
-			left: 120upx;
+			top: 330upx;
+			left: 110upx;
 		}
 		&.jx-main-gdhd{
-			top: 20%;
+			top: 400upx;
 			right: 10upx;
 		}
 	}

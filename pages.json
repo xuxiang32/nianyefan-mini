@@ -33,11 +33,18 @@
 				"navigationBarBackgroundColor": "#f33d37",
 				"backgroundColor": "#f33d37"
 			}
-		}
-		
-		
-
-	],
+		},
+		{
+            "path" : "pages/pointsOrder/pointsOrder",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "积分点菜",
+                "enablePullDownRefresh": false,
+				"navigationStyle":"custom"
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "匠心打造-年夜饭",

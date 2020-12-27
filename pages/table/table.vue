@@ -17,8 +17,13 @@
 			<view class="table-body">
 				<view class="table-person">
 					<view class="table-person-container">
-						<view class="table-team-leader">
-							
+						<view class="table-team-leader"></view>
+						<view class="table-team-ydNum">
+							<view class="table-team-ydNum-icon"></view>
+							<view class="table-team-ydNum-num">999</view>
+						</view>
+						<view class="table-team-leader-avatar">
+							<image :src="getAvatars('jiupImg.png')" mode="widthFix"></image>
 						</view>
 					</view>
 				</view>
@@ -59,19 +64,40 @@
 				</view>
 			</view>
 		</view>
-		<view class="jx-main-body">
-			<view class="button-container">
-				<button open-type="share">
-					<view class='wechatImg'>
-						 <image :src="familyBtn"  mode="widthFix"></image>
-					 </view>
-				</button>
-				<button @click="startOrder()">
-					<view class='wechatImg'>
-						 <image :src="startOrderBtn"  mode="widthFix"></image>
-					 </view>
-				</button>
+		<!-- 邀请 开始点菜按钮 -->
+		<view class="button-container" v-if="hideInviteButton">
+			<button open-type="share">
+				<view class='wechatImg'>
+					 <image :src="familyBtn"  mode="widthFix"></image>
+				 </view>
+			</button>
+			<button @click="startOrder()">
+				<view class='wechatImg'>
+					 <image :src="startOrderBtn"  mode="widthFix"></image>
+				 </view>
+			</button>
+		</view>
+		<!-- 已点菜品 查看排名按钮 -->
+		<view class="button-order">
+			<button>
+				<view class='table-go-yidian'>
+					 <image :src="ydDishes"  mode="widthFix"></image>
+					 <view class="table-go-yidian-number">999</view>
+				 </view>
+			</button>
+			<button>
+				<view class='table-go-rank'>
+					 <image :src="rankImg"  mode="widthFix"></image>
+					 <view class="table-go-yidian-number">999</view>
+				 </view>
+			</button>
+			<view class="table-go-order">
+				<view class="table-go-order-avatar">
+					<image :src="getAvatars('jiupImg.png')" mode="widthFix"></image>
+				</view>
 			</view>
+		</view>
+		<view class="jx-main-body">
 			<view class="step-container">
 				<view class="step-list">
 					<image :src="step1" mode="widthFix" ></image>
@@ -97,7 +123,16 @@
 				startOrderBtn: baseImgUrl	+ 'kaishidiancai-index.png',
 				step1: baseImgUrl	+ 'step1.png',
 				step2: baseImgUrl	+ 'step2.png',
+				ydDishes: baseImgUrl	+ 'orderLIst.png',
+				rankImg: baseImgUrl	+ 'viewPaim.png',
+				hideInviteButton: false
+				
 			};
+		},
+		methods: {
+			getAvatars (val) {
+				return baseImgUrl + val;
+			}
 		}
 	}
 </script>
@@ -176,6 +211,44 @@
 				background-size: cover ;
 				position: absolute;
 				bottom: -10rpx;
+				z-index: 95;
+			}
+			.table-team-ydNum{
+				min-width: fit-content;
+				height: 50upx;
+				padding: 3upx 10upx 3upx 0upx;
+				background-color: #fc3838;
+				background-size: 50upx ;
+				font-size: 20upx;
+				line-height: 50upx;
+				color: #ffd8ae;
+				position: absolute;
+				top: -30upx;
+				left: 50upx;
+				z-index: 99;
+				border: solid 1upx #e22e32;
+				border-radius: 50upx;
+				display: flex;
+				flex-wrap: nowrap;
+				justify-content: flex-start;
+				align-items: center;
+			}
+			.table-team-ydNum-icon{
+				width: 50upx;
+				height: 50upx;
+				background: ~"url(@{baseImgUrl}jiupIcon.png) no-repeat left 3upx";
+				background-size: cover;
+			}
+			.table-team-leader-avatar{
+				position: absolute;
+				top: -3upx;
+				left: -6upx;
+				width: 115upx;
+				height: 115upx;
+				& image{
+					width: 115upx;
+					height: 115upx;
+				}
 			}
 		}
 	}
@@ -258,24 +331,84 @@
 		}
 	}
 }
-.jx-main-body{
-		padding: 0upx 40upx 0;
-		.button-container{
-			display: flex;
-			flex-wrap: nowrap;
-			justify-content: center;
-			align-items: center;
+.button-container{
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	& image{
+		width: 250upx;
+	}
+	& button{
+		background: rgba(0,0,0,0);
+	}
+	& button::after{
+		width: fit-content;
+		height: fit-content;
+	}
+}
+.button-order{
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: center;
+	padding-left: 10upx;
+	& button{
+		background: rgba(0,0,0,0);
+		width: 132upx;
+		margin: 0;
+		padding: 0;
+		overflow: visible;
+	}
+	& button::after{
+		width: fit-content;
+		height: fit-content;
+	}
+	.table-go-yidian,
+	.table-go-rank{
+		position: relative;
+		& image{
+			width: 132upx;
+		}
+	}
+	.table-go-rank{
+		
+	}
+	.table-go-yidian-number{
+		position: absolute;
+		font-size: 18upx;
+		color: #ffd8ae;
+		border: solid 1upx #ffd8ae;
+		background-color: #862824;
+		padding: 0upx 10upx;
+		border-radius: 35upx;
+		height: 35upx;
+		top: -10upx;
+		line-height: 35upx;
+		right: 0;
+		z-index: 999;
+	}
+	.table-go-order{
+		width: 263upx;
+		height: 116upx;
+		background: ~"url(@{baseImgUrl}goOrder.png) no-repeat left center";
+		background-size: cover;
+		margin-left: auto;
+		.table-go-order-avatar{
+			width: 52upx;
+			height: 52upx;
+			padding-left: 35upx;
+			padding-top: 27upx;
 			& image{
-				width: 250upx;
-			}
-			& button{
-				background: rgba(0,0,0,0);
-			}
-			& button::after{
-				width: fit-content;
-				height: fit-content;
+				width: 52upx;
+				height: 52upx;
 			}
 		}
+	}
+}
+.jx-main-body{
+		padding: 0upx 40upx 0;
+		
 		.step-container{
 			width: 100%;
 			height: auto;

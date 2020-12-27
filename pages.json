@@ -35,15 +35,16 @@
 			}
 		},
 		{
-            "path" : "pages/pointsOrder/pointsOrder",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "积分点菜",
-                "enablePullDownRefresh": false,
+		    "path" : "pages/pointsOrder/pointsOrder",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "积分点菜",
+		        "enablePullDownRefresh": false,
 				"navigationStyle":"custom"
-            }
-            
-        }
+		    }
+		    
+		}
+		
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

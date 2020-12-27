@@ -18,7 +18,10 @@
 				"navigationStyle":"custom",
 				"navigationBarTextStyle": "white",
 				"navigationBarBackgroundColor": "#FA7950",
-				"backgroundColor": "#EF1B29"
+				"backgroundColor": "#EF1B29",
+				"app-plus":{
+					"scrollIndicator":"none"
+				}
 			}
 		},
 		{

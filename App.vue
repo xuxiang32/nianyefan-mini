@@ -22,8 +22,11 @@
 			userInfo : {},
 			memberId: '',
 			userId: '',
+			userPhone: '',
+			applicationId: '',
 			isAuthUser: false,
 			isAuthPhone: false,
+			getTokening: false
 		}
 	}
 </script>

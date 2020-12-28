@@ -45,6 +45,16 @@
 		    
 		}
 		
+        ,{
+            "path" : "pages/randomOrder/randomOrder",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false,
+				"navigationStyle":"custom"
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

@@ -12,8 +12,19 @@
 				<view class="rankMine">
 					<image :src="rankMine" mode="heightFix"></image>
 				</view>
-				<view class="rankLastTime">
+				<view class="rankLastTime" v-if="!isEnd && isFormed">
 					<span>2月26日12：00开奖</span>
+				</view>
+				<view class="rankNoFormed" v-if="!isEnd && !isFormed">
+					<image :src="rankNoFormed" mode="widthFix"></image>
+				</view>
+				<view class="rankHasEnd" v-if="isEnd">
+					<image :src="rankEnd" mode="heightFix" v-if="!isOpenPrize"></image>
+					<image :src="rankPrize" mode="heightFix"  v-if="isOpenPrize"></image>
+				</view>
+				<view class="rankPmPrize" v-if="isEnd && isOpenPrize">
+					<image :src="viewPrizes" mode="widthFix"></image>
+					<image :src="openPrizes" mode="widthFix"></image>
 				</view>
 				<view class="rankBack">
 					<view class="backWrap">
@@ -24,11 +35,20 @@
 			</view>
 			<view class="ranktCon">
 			<view class="rankTWrap">
-				<view class="rankTIcon">{{userPm.name}}</view>
-				<view class="rankTPm">{{'第'+userPm.pm+'名'}}</view>
+				<view class="rankTIcon title">{{userPm.name}}</view>
+				<view class="rankTPm title">
+					<span v-if="isFormed">{{'第'+userPm.pm+'名'}}</span>
+					<span v-else>
+						<span class="bold">尚未入榜</span>
+						<span class="sm">饭桌满2人即可进入排行</span>
+					</span>
+				</view>
 				<view class="rankTjpNum">
-					<image :src="jiupIcon" mode="heightFix"></image>
-				{{userPm.jpNum}}
+					<view>
+						<image :src="jiupIcon" mode="heightFix"></image>
+						<span v-if="isFormed">{{userPm.jpNum}}</span>
+						<span v-else>--</span>
+				    </view>
 				</view>
 			</view>
 			<view class="rankBorder">
@@ -92,6 +112,11 @@ const baseImgUrl = getApp().globalData.baseImgUri
 				paiFirst: baseImgUrl + '/paiFirstIcon.png',
 				paiSec: baseImgUrl + '/paiSecIcon.png',
 				paiThird: baseImgUrl + '/paiThirdIcon.png',
+				rankEnd: baseImgUrl + '/end.png',
+				rankPrize: baseImgUrl + '/prizeOpen.png',
+				viewPrizes: baseImgUrl + '/viewPrizes.png',
+				openPrizes: baseImgUrl + 'getPrize.png',
+				rankNoFormed: baseImgUrl + 'inviteteam.png',
 				paiBg: baseImgUrl + '/paimBg.png',
 				pm: baseImgUrl + '/paim.png',
 				fz: baseImgUrl + '/fanzhuo.png',
@@ -132,8 +157,16 @@ const baseImgUrl = getApp().globalData.baseImgUri
 					jpNum: 2077,
 					name: '好和hi',
 					img: ''
-				}]
+				}],
+				isEnd: false, // 活动结束
+				isOpenPrize: true, // 已开奖
+				isFormed: false, // 未组队
 			}
+		},
+		onLoad(option) {
+			// this.isEnd = true
+			this.isFormed = false
+			this.isOpenPrize = false
 		},
 		methods: {
 			handleTo(val){
@@ -172,13 +205,10 @@ const baseImgUrl = getApp().globalData.baseImgUri
 		.rankTop{
 			width: 100%;
 			position: relative;
-			height: 600upx;
 			.rankTopBg{
 				width: 100%;
-				height: 230upx;
-				position: absolute;
-				left: 0;
-				top: 140upx;
+				height: 460upx;
+				padding-top: 160upx;
 				z-index: 2;
 				image{
 					width: 100%
@@ -223,6 +253,38 @@ const baseImgUrl = getApp().globalData.baseImgUri
 					line-height: 84upx;
 				}
 			}
+				.rankHasEnd{
+					position: absolute;
+					left: 50%;
+					margin-left: -162upx;
+					text-align: center;
+					z-index: 4;
+					top: 450upx;
+					width: 324upx;
+					height: 84upx;
+					image{
+						height: 100%;
+					}
+				}
+				.rankNoFormed{
+					position: absolute;
+					left: 50%;
+					margin-left: -130upx;
+					text-align: center;
+					z-index: 4;
+					top: 450upx;
+					width: 260upx;
+					image{
+						width: 100%;
+					}
+				}
+				.rankPmPrize{
+					padding: 0 24upx;
+					height: 280upx;
+					image{
+						width: 100%;
+					}
+				}
 			.rankBack{
 				position: absolute;
 				right: 10upx;
@@ -267,12 +329,13 @@ const baseImgUrl = getApp().globalData.baseImgUri
 			display: flex;
 			justify-content: space-between;
 			.rankTPm{
-				width: 25%;
+				width: 20%;
 				text-align: center;
 				position: relative;
 				color: #862824;
 				font-size: 24upx;
 				font-weight: bold;
+				line-height: 60upx;
 				image{
 					height: 60upx;
 				}
@@ -284,15 +347,38 @@ const baseImgUrl = getApp().globalData.baseImgUri
 					color: #862824;
 					width: 60upx;
 					text-align: center;
-					font-size: 24upx;
-					font-weight: bold;
+					font-size: 24upx; 
+					font-weight: 500;
+				}
+				&.title{
+					width: 40%;
+					line-height: 40upx;
+					span{
+						position: relative;
+						left: 0;
+						width: 100%;
+						display: block;
+						&.sm{
+							font-size: 24upx;
+							font-weight: normal;
+						}
+						&.bold{
+							font-size: 36upx;
+							font-size: 500;
+						}
+					}
 				}
 			}
 			.rankTIcon{
 				text-align: left;
-				width: 50%;
+				line-height: 60upx;
+				width: 55%;
 				color: #862824;
 				font-weight: 600;
+				&.title{
+					width: 40%;
+					flex: 1;
+				}
 			}
 			.rankTjpNum{
 				width: 25%;
@@ -301,6 +387,10 @@ const baseImgUrl = getApp().globalData.baseImgUri
 				image{
 					height: 60upx;
 					float: left;
+				}
+				&.title{
+					width: 20%;
+					flex: 1;
 				}
 			}
 			.small{

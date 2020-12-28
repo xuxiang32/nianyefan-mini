@@ -1,7 +1,7 @@
 {
-    "name" : "nyfNew",
+    "name" : "匠心年夜饭",
     "appid" : "__UNI__7D91404",
-    "description" : "",
+    "description" : "匠心年夜饭",
     "versionName" : "1.0.0",
     "versionCode" : "100",
     "transformPx" : false,
@@ -53,10 +53,13 @@
         "appid" : "wxb36b5d3c11919909",
         "setting" : {
             "urlCheck" : false,
-            "es6" : true,
-            "minified" : true
+            "es6" : false,
+            "minified" : false
         },
-        "usingComponents" : true
+        "usingComponents" : true,
+        "uniStatistics" : {
+            "enable" : false
+        }
     },
     "mp-alipay" : {
         "usingComponents" : true

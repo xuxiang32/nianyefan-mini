@@ -18,7 +18,12 @@
 			couponHttp:'https://www.dalajiaopm.com/ahxh-coupon-api/',
 			activityUrl: 'https://www.dalajiaopm.com/links-software-web-activity/',
 			memberUrl: 'https://www.dalajiaopm.com/',
-			baseImgUri: 'https://event.1shang.com/links-software-web-file/integralMall/jiangxin/'
+			baseImgUri: 'https://event.1shang.com/links-software-web-file/integralMall/jiangxin/',
+			userInfo : {},
+			memberId: '',
+			userId: '',
+			isAuthUser: false,
+			isAuthPhone: false,
 		}
 	}
 </script>

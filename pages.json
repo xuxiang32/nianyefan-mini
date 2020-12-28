@@ -52,8 +52,16 @@
                 "enablePullDownRefresh": false,
 				"navigationStyle":"custom"
             }
-            
-        }
+        },
+		{
+		    "path" : "pages/orderedDishes/orderedDishes",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false,
+				"navigationStyle":"custom"
+		    }
+		}
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

@@ -28,11 +28,45 @@
 					<image :src="pointOrder" mode="widthFix"></image>
 				</view>
 			</view>
+			<view class="button-order">
+				<button>
+					<view class='table-go-backTable'>
+						 <image :src="backTableBtn"  mode="widthFix"></image>
+						 <view class="table-go-yidian-number">999</view>
+					 </view>
+				</button>
+			</view>
+		</view>
+		<view class="random-order-main">
+			<view class="random-order-list-container">
+				<view class="random-order-list-img">
+					<image :src="randomOrder" mode="widthFix"></image>
+				</view>
+				<view class="random-order-list-body">
+					<view class="points-order-list-sypoint">
+						<image :src="lastTips" mode="widthFix"></image>
+						<text>999</text>
+					</view>
+					<view class="random-order-list-order">
+						<image :src="randomBtn" mode="widthFix"></image>
+					</view>
+					<view class="random-order-list-order-des">
+						<image :src="randomOrderDes" mode="widthFix"></image>
+					</view>
+				</view>
+				<view class="random-order-list-scan">
+					<image :src="scanBtn" mode="widthFix"></image>
+				</view>
+			</view>
+		</view>
+		<view class="random-order-list-scan-des">
+			<image :src="uncoverDes" mode="widthFix"></image>
 		</view>
 	</view>
 </template>
 
 <script>
+	const baseImgUrl = getApp().globalData.baseImgUri;
 	export default {
 		data() {
 			return {
@@ -41,8 +75,19 @@
 				jiupIcon: baseImgUrl	+ 'jiupIcon.png',
 				backTableBtn: baseImgUrl + 'backTable.png',
 				rightArrowBtn: baseImgUrl + 'arrowRight.png',
-				pointOrder: baseImgUrl + 'pointOrder.png'
+				pointOrder: baseImgUrl + 'pointOrder.png',
+				randomOrder: baseImgUrl + 'randomOrder.png',
+				lastTips: baseImgUrl + 'lastTips.png',
+				randomBtn: baseImgUrl + 'randomBtn.png',
+				randomOrderDes: baseImgUrl + 'randomOrderDes.png',
+				scanBtn: baseImgUrl + 'scan.png',
+				uncoverDes: baseImgUrl + 'uncover.png'
 			};
+		},
+		methods: {
+			getAvatars (val) {
+				return baseImgUrl + val;
+			}
 		}
 	}
 </script>
@@ -135,6 +180,127 @@
 					width: 184upx;
 				}
 			}
+		}
+	}
+	.button-order{
+		display: flex;
+		flex-wrap: nowrap;
+		justify-content: flex-start;
+		align-items: center;
+		padding-left: 10upx;
+		& button{
+			background: rgba(0,0,0,0);
+			width: 132upx;
+			margin: 0;
+			padding: 0;
+			overflow: visible;
+			height: 132upx;
+		}
+		& button::after{
+			width: fit-content;
+			height: fit-content;
+		}
+	
+		.table-go-backTable{
+			position: relative;
+			& image{
+				width: 132upx;
+			}
+		}
+		
+		.table-go-yidian-number{
+			position: absolute;
+			font-size: 18upx;
+			color: #ffd8ae;
+			border: solid 1upx #ffd8ae;
+			background-color: #862824;
+			padding: 0upx 10upx;
+			border-radius: 35upx;
+			height: 35upx;
+			top: -10upx;
+			line-height: 35upx;
+			right: 0;
+			z-index: 999;
+		}
+	}
+	.random-order-main{
+		width: 100%;
+		.random-order-list-container{
+			position: relative;
+			height: auto;
+			margin: 0 auto;
+			width: 90%;
+			.random-order-list-img{
+				width: 428upx;
+				height: auto;
+				margin: 0 auto;
+				position: absolute;
+				left: 50%;
+				margin-top: -100upx;
+				margin-left: -214upx;
+				& image{
+					width: 428upx;
+				}
+			}
+			.random-order-list-body{
+				width: 576upx;
+				height: 579upx;
+				background: ~"url(@{baseImgUrl}orderTable.png) no-repeat center";
+				background-size: cover;
+				margin: -50upx auto 0;
+				.points-order-list-sypoint{
+					padding-top: 80upx;
+					display: flex;
+					flex-wrap: nowrap;
+					justify-content: center;
+					align-items: center;
+					& image{
+						width: 168upx;
+					}
+					& text{
+						font-size: 40upx;
+						line-height: 38upx;
+						color: #862824;
+						margin-left: 20upx;
+						font-weight: bold;
+					}
+				}
+			}
+			.random-order-list-order{
+				width: 230upx;
+				height: 230upx;
+				margin: 70upx auto 0;
+				& image{
+					width: 230upx;
+					height: 230upx;
+				}
+			}
+			.random-order-list-order-des{
+				width: 366upx;
+				height: 30upx;
+				margin: 10upx auto 0;
+				& image{
+					width: 366upx;
+					height: 30upx;
+				}
+			}
+			.random-order-list-scan{
+				width: 256upx;
+				height: 116upx;
+				margin: 40upx auto 0;
+				& image{
+					width: 256upx;
+					height: 116upx;
+				}
+			}
+		}
+	}
+	.random-order-list-scan-des{
+		width: 690upx;
+		height: auto;
+		margin: 40upx auto 0;
+		& image{
+			width: 690upx;
 		}
 	}
 }

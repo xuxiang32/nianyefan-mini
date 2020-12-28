@@ -43,9 +43,8 @@
 				"navigationStyle":"custom"
 		    }
 		    
-		}
-		
-        ,{
+		},
+		{
             "path" : "pages/randomOrder/randomOrder",
             "style" :                                                                                    
             {

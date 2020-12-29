@@ -204,17 +204,30 @@
 						</view>
 					</view>
 					<view class="ordered-dishes-list-allBtn">
-						<image :src="allFood" mode="widthFix"></image>
+						<view @click="toggleMessage('custom')"><image :src="allFood" mode="widthFix"></image></view>
 					</view>
 				</view>
 			</view>
 		</view>
+		<!-- 全部菜单弹框 -->
+		<chunLei-modal v-model="dialogDisabled" :mData="allOrders" :type="type" @onConfirm="onConfirm" @cancel="cancel" :navHeight="0">
+			<div class="custom-view" @tap.stop>
+				<view class="hongbao"><orderMember /></view>
+				<image class="cancel" @tap.stop="dialogDisabled=false" :src="modalClose"></image>
+			</div>
+		</chunLei-modal>
 	</view>
 </template>
 
 <script>
-	const baseImgUrl = getApp().globalData.baseImgUri;
+import chunLeiModal from '@/components/chunLei-modal/chunLei-modal.vue'
+import orderMember from '@/components/orderMember/orderMenmber.vue'
+	const baseImgUrl = getApp().globalData.baseImgUri; 
 	export default {
+		components:{
+		chunLeiModal,
+		orderMember
+		},
 		data() {
 			return {
 				hdgzBtn: baseImgUrl	+ 'hdgz-btn.png',
@@ -225,8 +238,24 @@
 				teamTitleImg: baseImgUrl + 'teamTitle.png',
 				foodIcon: baseImgUrl + 'foodIcon.png',
 				jiupImg: baseImgUrl + 'jiupImg.png',
-				allFood: baseImgUrl + 'allFood.png'
+				allFood: baseImgUrl + 'allFood.png',
+				modalClose: baseImgUrl + 'close.png',
+				dialogDisabled: false,
+				allOrders:{},
+				type: 'default'
 			};
+		},
+		methods:{
+			toggleMessage(type) {
+				this.type = type
+				this.dialogDisabled = true
+			},
+			onConfirm(e){
+				uni.showToast({title:'确认',icon:'none'})
+			},
+			cancel(){
+				uni.showToast({title:'取消',icon:'none'})
+			},
 		}
 	}
 </script>
@@ -412,6 +441,24 @@
 				width: 196upx;
 			}
 		}
+	}
+}
+.custom-view{
+	position: relative;
+	padding: 46upx 0;
+	.hongbao{
+		width: 640upx;
+		height: 1200upx;
+		background: ~"url(@{baseImgUrl}myOrderBg.png) no-repeat center";
+		background-size: 100%;
+	}
+	.cancel{
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: 40rpx;
+		height: 40rpx;
+		margin: 0;
 	}
 }
 </style>

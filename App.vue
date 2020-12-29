@@ -26,7 +26,9 @@
 			applicationId: '',
 			isAuthUser: false,
 			isAuthPhone: false,
-			getTokening: false
+			getTokening: false,
+			applicationId:'609',
+			publishPlatformId:'157'
 		}
 	}
 </script>

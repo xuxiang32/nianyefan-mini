@@ -222,7 +222,7 @@
 <script>
 import chunLeiModal from '@/components/chunLei-modal/chunLei-modal.vue'
 import orderMember from '@/components/orderMember/orderMenmber.vue'
-import api from '../../utils/api.js';
+import api from '@/utils/api.js';
 	const baseImgUrl = api.baseImgUri; 
 	export default {
 		components:{
@@ -241,9 +241,9 @@ import api from '../../utils/api.js';
 				jiupImg: baseImgUrl + 'jiupImg.png',
 				allFood: baseImgUrl + 'allFood.png',
 				modalClose: baseImgUrl + 'close.png',
-				dialogDisabled: false,
 				allOrders:{},
-				type: 'default'
+				dialogDisabled: false, // 弹框显示隐藏
+				type: 'custom', // 弹框类型
 			};
 		},
 		methods:{

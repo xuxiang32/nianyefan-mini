@@ -21,26 +21,53 @@ page{
 		flex-direction: column;
 		align-items: center;
 		.hongbao{
+			background-color: #ffd8ae;
 			width: 500rpx;
-			height: 700rpx;
+			// height: 400rpx;
 			border-radius: 6rpx;
-			// background: #F35543;
 			.top{
 				text-align: center;
 				padding: 100rpx 80rpx 0 ;
 				height: 400rpx;
-				// background: #F45E4D;
 				color: #FEDCAC;
 				font-szie:30px;
 			}
-			.bottom{
-				margin-top: 80rpx;
-				color: #FDC69B;
+			.pointTxt{
+				color: #862824;
 				text-align: center;
+				font-size: 32upx;
+				padding: 100upx 100upx 20upx 100upx;
+			}
+			.bottom{
+				margin-top: 60rpx;
+				text-align: center;
+				padding-bottom: 20upx;
+				display: inline-block;
+				width: 100%;
+				button{
+					background-color: #ffd8ae;
+					width: 50%;
+					border: none;
+					text-align: center;
+					float: left;
+					box-shadow: none;
+					line-height: 112upx;
+					height: 112upx;
+					color: rgba(0, 0, 0, 0);
+					&::after{
+						display: none;
+					}
+					image{
+						height: 112upx;
+					}
+				}
+			}
+			.pointTxt{
+				
 			}
 		}
 		.cancel{
-			margin-top: 100rpx;
+			margin-top: 40rpx;
 			width: 60rpx;
 			height: 60rpx;
 		}

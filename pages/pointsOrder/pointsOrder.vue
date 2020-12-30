@@ -61,7 +61,7 @@
 								北京烤鸭
 							</view>
 						</view>
-						<view class="points-order-tenOrder-dish-btn">
+						<view class="points-order-tenOrder-dish-btn" @click="handlePontsOrder(item)">
 							<image :src="dcPoint" mode="widthFix"></image>
 						</view>
 					</view>
@@ -231,11 +231,28 @@
 				
 			</view>
 		</view>
+		<!-- 积分点菜 -->
+		<chunLei-modal v-model="dialogDisabled" :mData="allOrders" :type="type" @onConfirm="onConfirm" @cancel="cancel" :navHeight="0">
+			<div class="custom-view" @tap.stop>
+				<view class="hongbao">
+					<view class="pointTxt">
+						<text>是否确认将消耗10积分</text>
+						<text>兑换一份北京烤鸭</text>
+					</view>
+					<view class="bottom">
+						<button type="default"><image :src="cancleBtn" mode="heightFix"></image></button>
+						<button type="default"><image :src="successBtn" mode="heightFix"></image></button>
+					</view>
+				</view>
+				<image class="cancel" @tap.stop="dialogDisabled=false" :src="modalClose"></image>
+			</div>
+		</chunLei-modal>
 	</view>
 </template>
 
 <script>
-import api from '../../utils/api.js';
+import api from '@/utils/api.js';
+import chunLeiModal from '@/components/chunLei-modal/chunLei-modal.vue'
 	const baseImgUrl = api.baseImgUri; 
 	export default {
 		data() {
@@ -251,12 +268,25 @@ import api from '../../utils/api.js';
 				tenPoint: baseImgUrl + 'orderTen.png',
 				orderThirty: baseImgUrl + 'orderThirty.png',
 				dcPoint: baseImgUrl + 'orderBtn.png',
-				orderEnd: baseImgUrl + 'orderEnd.png'
+				orderEnd: baseImgUrl + 'orderEnd.png',
+				cancleBtn: baseImgUrl + 'cancle.png',
+				successBtn: baseImgUrl + 'success.png',
+				modalClose: baseImgUrl + 'close.png',
+				item: {
+					orderId: '01',
+					orderName: '北京烤鸭'
+				},
+				dialogDisabled: false, // 弹框显示隐藏
+				type: 'custom', // 弹框类型
+				allOrders: {}, // 弹框数据
 			};
 		},
 		methods: {
 			getAvatars (val) {
 				return baseImgUrl + val;
+			},
+			handlePontsOrder(val) {
+				this.dialogDisabled = true
 			}
 		}
 	}

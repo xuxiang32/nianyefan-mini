@@ -236,23 +236,20 @@
 			text-align: center;
 		}
 		.btn{
-			height: 100rpx;
+			height: 112rpx;
 			display: flex;
 			flex-direction: row;
-			border-top:1px solid #ccc;
 			.cancel{
 				display: flex;
 				flex: 1;
 				justify-content: center;
 				align-items: center;
-				border-right:1px solid #ccc;
 			}
 			.confirm{
 				display: flex;
 				flex: 1;
 				justify-content: center;
 				align-items: center;
-				color: rgb(0, 122, 255);
 			}
 		}
 	}

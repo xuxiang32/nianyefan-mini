@@ -83,6 +83,7 @@
 				if (that.isAuthUser && !utils.isEmpty(wx.getStorageSync('token'))) { //如果用户信息已授权而且有token了
 					if (res.from === "button") {
 						console.log(res)
+						// 创建群组
 
 						let v = 'test';
 						return {
@@ -138,7 +139,7 @@
 				if (!utils.isEmpty(wx.getStorageSync('token'))) {
 					return
 				}
-				
+
 				let that = this;
 				wx.login({
 					success: function(res_login) {
@@ -209,7 +210,7 @@
 											app.globalData.userInfo.phone = res.data.data;
 											app.globalData.isAuthPhone = true;
 											that.isAuthPhone = true;
-											
+
 										} else { //未绑
 											app.globalData.isAuthPhone = false;
 										}

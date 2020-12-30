@@ -222,7 +222,8 @@
 <script>
 import chunLeiModal from '@/components/chunLei-modal/chunLei-modal.vue'
 import orderMember from '@/components/orderMember/orderMenmber.vue'
-	const baseImgUrl = getApp().globalData.baseImgUri; 
+import api from '../../utils/api.js';
+	const baseImgUrl = api.baseImgUri; 
 	export default {
 		components:{
 		chunLeiModal,

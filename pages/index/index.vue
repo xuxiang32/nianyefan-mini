@@ -17,7 +17,7 @@
 						<image :src="familyBtn" mode="widthFix"></image>
 					</view>
 				</button>
-				<button open-type="getUserInfo" @getuserinfo="onGotUserInfo" v-if="!isAuthUser">
+				<button open-type="getUserInfo" lang="zh_CN" @getuserinfo="onGotUserInfo" v-if="!isAuthUser">
 					<view class='wechatImg'>
 						<image :src="familyBtn" mode="widthFix"></image>
 					</view>
@@ -42,8 +42,9 @@
 
 <script>
 	import utils from '../../utils/util.js';
+	import api from '../../utils/api.js';
 	const app = getApp();
-	const baseImgUrl = app.globalData.baseImgUri;
+	const baseImgUrl = api.baseImgUri;
 	let rawData, that;
 	export default {
 		data() {
@@ -134,7 +135,6 @@
 				wx.login({
 					success: function(res_login) {
 						let accountInfo = wx.getAccountInfoSync();
-						console.log(res_login);
 						if (res_login.code) {
 							wx.getUserInfo({
 								lang: "zh_CN",
@@ -144,10 +144,7 @@
 										encryptedData: res.encryptedData,
 										iv: res.iv,
 										appid: accountInfo.miniProgram.appId,
-										applicationId: app.globalData.applicationId,
-										publishPlatformId: app.globalData.publishPlatformId
 									};
-									console.log('jsonData---', jsonData);
 
 									/**
 									 * 拿到授权信息后将加密字符传入后台解密或得到相关的用户信息及openid
@@ -236,14 +233,13 @@
 				});
 			},
 			getToken(data) {
-				console.log(data);
 				let that = this
 				wx.showLoading({
 				  title: '加载中',
 				})
 				data.applicationId = app.globalData.applicationId
 				wx.request({
-					url: app.globalData.loginUrl,
+					url: api.loginUrl,
 					header: {
 						'Content-Type': 'application/x-www-form-urlencoded'
 					},

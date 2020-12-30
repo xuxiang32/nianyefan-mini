@@ -12,13 +12,6 @@
 			console.log('App Hide')
 		},
 		globalData:{
-			loginUrl: "https://www.dalajiaopm.com/member-system-api/auth/getJwtTokenByMiniprogram", // 登录链接,前面加上host
-			loginUrlAct: "https://www.dalajiaopm.com/links-software-web-activity/wechatApp/privateLogin", // 登录链接,前面加上host
-			httpPrefix: 'https://www.dalajiaopm.com/integral-mall-api/',
-			couponHttp:'https://www.dalajiaopm.com/ahxh-coupon-api/',
-			activityUrl: 'https://www.dalajiaopm.com/links-software-web-activity/',
-			memberUrl: 'https://www.dalajiaopm.com/',
-			baseImgUri: 'https://event.1shang.com/links-software-web-file/integralMall/jiangxin/',
 			userInfo : {},
 			memberId: '',
 			userId: '',
@@ -26,9 +19,9 @@
 			applicationId: '',
 			isAuthUser: false,
 			isAuthPhone: false,
-			getTokening: false,
 			applicationId:'609',
-			publishPlatformId:'157'
+			publishPlatformId:'157',
+			getTokening: false
 		}
 	}
 </script>

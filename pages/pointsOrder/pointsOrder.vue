@@ -235,7 +235,8 @@
 </template>
 
 <script>
-	const baseImgUrl = getApp().globalData.baseImgUri;
+import api from '../../utils/api.js';
+	const baseImgUrl = api.baseImgUri; 
 	export default {
 		data() {
 			return {

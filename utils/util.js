@@ -1,6 +1,8 @@
+import api from './api.js';
+
 const app = getApp()
-let dommain = app.globalData.httpPrefix
-let dommain2 = app.globalData.memberUrl
+let dommain = api.domain
+let dommain2 = api.domain
 
 
 const formatTime = date => {
@@ -51,10 +53,11 @@ let getToken = function (suc = function () {}) {
               encryptedData: res.encryptedData,
               iv: res.iv,
               appid: accountInfo.miniProgram.appId,
-              applicationId: app.globalData.applicationId
+              applicationId: app.globalData.applicationId,
+			  publishPlatformId: app.globalData.publishPlatformId
             };
             wx.request({
-              url: app.globalData.loginUrl,
+              url: api.loginUrl,
               header: {
                 'Content-Type': 'application/x-www-form-urlencoded'
               },
@@ -163,6 +166,7 @@ let getUserInfo = function (obj = null, callBack = false) {
 
 
 var requestBySessionId = function (requestParam, needDomain = true) {
+	console.log({requestParam});
   //三个默认参数的值
   var method = "GET";
   var dataType = "json";
@@ -211,6 +215,7 @@ var requestBySessionId = function (requestParam, needDomain = true) {
   }
 
   header['JWT-TOKEN'] = wx.getStorageSync('token');
+  header['MEMBER-APPLICATION-ID'] = getApp().globalData.membeApplicationId;
 
   wx.request({
     url: needDomain ? dommain + url : url,

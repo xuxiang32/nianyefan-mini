@@ -283,7 +283,7 @@ Page({
             data: data,
             success: res => {
               //先将检查服务器返回报文头中有无sessionId，有则存到全局变量中
-              var cookie = res.header["Set-Cookie"];
+              let cookie = res.header["Set-Cookie"];
               if (undefined != cookie) {
                 var sessionPos;
                 if ((sessionPos = cookie.indexOf("JSESSIONID=")) != -1) {

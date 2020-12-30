@@ -2,13 +2,19 @@
 	<view class="main-container">
 		<NavBar :backBtn="true" title="匠心年夜饭" background="rgba(0,0,0,0)" color="#FFF"></NavBar>
 		<view class="jx-main-fixedBtn jx-main-hdgz">
-			<image :src="hdgzBtn" mode="widthFix"></image>
+			<button open-type="getUserInfo" id="hdgzBtn" @getuserinfo="onGotUserInfo">
+				<image :src="hdgzBtn" mode="widthFix"></image>
+			</button>
 		</view>
-		<view class="jx-main-fixedBtn jx-main-wdjp" @click="handleTo('rank')">
-			<image :src="wdjpBtn" mode="widthFix"></image>
+		<view class="jx-main-fixedBtn jx-main-wdjp" >
+			<button open-type="getUserInfo" id="wdjpBtn" @getuserinfo="onGotUserInfo">
+				<image :src="wdjpBtn" mode="widthFix"></image>
+			</button>
 		</view>
 		<view class="jx-main-fixedBtn jx-main-gdhd">
-			<image :src="gdhdBtn" mode="widthFix"></image>
+			<button open-type="getUserInfo" id="gdhdBtn" @getuserinfo="onGotUserInfo">
+				<image :src="gdhdBtn" mode="widthFix"></image>
+			</button>
 		</view>
 		<view class="jx-main-body">
 			<view class="button-container">
@@ -17,12 +23,12 @@
 						<image :src="familyBtn" mode="widthFix"></image>
 					</view>
 				</button>
-				<button open-type="getUserInfo" @getuserinfo="onGotUserInfo" v-if="!isAuthUser">
+				<button open-type="getUserInfo" id="shareBtn" v-if="!isAuthUser" @getuserinfo="onGotUserInfo" >
 					<view class='wechatImg'>
 						<image :src="familyBtn" mode="widthFix"></image>
 					</view>
 				</button>
-				<button @click="startOrder()">
+				<button open-type="getUserInfo" id="startOrderBtn" @getuserinfo="onGotUserInfo" >
 					<view class='wechatImg'>
 						<image :src="startOrderBtn" mode="widthFix"></image>
 					</view>
@@ -63,13 +69,17 @@
 		},
 		onLoad() {
 			that = this;
+			if (wx.getStorageSync('token')){
+				app.globalData.isAuthUser = true;
+				app.globalData.getTokening = true;
+				this.getUserInfo ()
+			}
 			this.isAuthUser = app.globalData.isAuthUser;
 			this.isAuthPhone = app.globalData.isAuthPhone;
-
 		},
 		methods: {
 			onShareAppMessage(res) {
-				console.log(that);
+				console.log(res);
 				if (that.isAuthUser && !utils.isEmpty(wx.getStorageSync('token'))) { //如果用户信息已授权而且有token了
 					if (res.from === "button") {
 						console.log(res)
@@ -124,13 +134,11 @@
 				});
 			},
 			onGotUserInfo(res) {
-				if (utils.isEmpty(res.detail.iv)) {
-					return
-				} else {
-					console.log('ininini', res);
-					app.globalData.isAuthUser = true;
-				}
 				console.log('aaaaa', res);
+				if (!utils.isEmpty(wx.getStorageSync('token'))) {
+					return
+				}
+				
 				let that = this;
 				wx.login({
 					success: function(res_login) {
@@ -152,7 +160,7 @@
 									/**
 									 * 拿到授权信息后将加密字符传入后台解密或得到相关的用户信息及openid
 									 */
-									that.getToken(jsonData)
+									that.getToken(jsonData);
 								},
 								fail: function(res) {
 									app.globalData.getTokening = false
@@ -166,19 +174,24 @@
 					},
 
 				})
-
-
 			},
 			getUserInfo() {
-				let that = this
-				console.log(that);
 				wx.showLoading({
 				  title: '加载中',
 				})
 				utils.requestBySessionId({
-					url: 'wap/integralUserCenter/toUserCenter',
+					url: '/integral-mall-api/wap/integralUserCenter/toUserCenter',
 					method: 'POST',
 					success: function(res) {
+						//先将检查服务器返回报文头中有无sessionId，有则存到全局变量中
+						var cookie = res.header["Set-Cookie"];
+						if (undefined != cookie) {
+						  var sessionPos;
+						  if ((sessionPos = cookie.indexOf("JSESSIONID=")) != -1) {
+						    //每次请求成功都将sessionId存入全局变量
+						    wx.setStorageSync('cookie', cookie.substr(sessionPos, 43))
+						  }
+						}
 						if (res.data.success) {
 							app.globalData.userInfo = Object.assign({}, app.globalData.userInfo, res.data.data.integralUser);
 							app.globalData.memberId = res.data.data.integralUser.memberId
@@ -194,22 +207,11 @@
 									if (res.data.success) {
 										if (res.data.data) { //已绑
 											app.globalData.userInfo.phone = res.data.data;
-											that.setData({
-												isAuthPhone: true
-											})
-											if (that.data.path) { //如果从参数里拿到path就跳回那个path  不然就返回上一页
-												wx.redirectTo({
-													url: that.data.path,
-												})
-											} else {
-												wx.navigateBack({
-													delta: 1
-												})
-											}
+											app.globalData.isAuthPhone = true;
+											that.isAuthPhone = true;
+											
 										} else { //未绑
-											that.setData({
-												isAuthPhone: false,
-											})
+											app.globalData.isAuthPhone = false;
 										}
 									}
 								},
@@ -236,14 +238,15 @@
 				});
 			},
 			getToken(data) {
-				console.log(data);
+				console.log('getToken---', data);
 				let that = this
 				wx.showLoading({
 				  title: '加载中',
 				})
-				data.applicationId = app.globalData.applicationId
+				data.applicationId = app.globalData.applicationId;
+				console.log(api.loginUrl);
 				wx.request({
-					url: app.globalData.loginUrl,
+					url: api.loginUrl,
 					header: {
 						'Content-Type': 'application/x-www-form-urlencoded'
 					},
@@ -252,6 +255,9 @@
 					success: res => {
 						if (res.data.success) {
 							wx.setStorageSync('token', res.data.data);
+							that.isAuthUser = true;
+							app.globalData.getTokening = true;
+							app.globalData.isAuthUser = true;
 							// that.onLoad()
 						} else {
 							wx.showToast({
@@ -262,6 +268,7 @@
 
 					},
 					fail: function(res) {
+						console.log(res);
 						wx.showToast({
 							title: '系统错误',
 							icon: 'none'
@@ -286,7 +293,16 @@
 
 		.jx-main-fixedBtn {
 			position: absolute;
+			& button {
+					background: rgba(0, 0, 0, 0);
+					padding: 0;
+					margin: 0;
+				}
 
+				& button::after {
+					width: fit-content;
+					height: fit-content;
+				}
 			& image {
 				width: 138upx;
 			}

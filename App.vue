@@ -20,6 +20,7 @@
 			isAuthUser: false,
 			isAuthPhone: false,
 			applicationId:'609',
+			membeApplicationId:'496',
 			publishPlatformId:'157',
 			getTokening: false
 		}

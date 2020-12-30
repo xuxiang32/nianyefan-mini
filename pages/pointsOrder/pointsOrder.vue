@@ -224,11 +224,7 @@
 							<image :src="dcPoint" mode="widthFix"></image>
 						</view>
 					</view>
-					
 				</view>
-				
-				
-				
 			</view>
 		</view>
 		<!-- 积分点菜 -->
@@ -237,14 +233,48 @@
 				<view class="hongbao">
 					<view class="pointTxt">
 						<text>是否确认将消耗10积分</text>
-						<text>兑换一份北京烤鸭</text>
+						<text>兑换一份{{item.orderName}}</text>
 					</view>
 					<view class="bottom">
-						<button type="default"><image :src="cancleBtn" mode="heightFix"></image></button>
-						<button type="default"><image :src="successBtn" mode="heightFix"></image></button>
+						<button type="default" @tap.stop="dialogDisabled=false"><image :src="cancleBtn" mode="heightFix"></image></button>
+						<button type="default" @tap="handleConfirm"><image :src="successBtn" mode="heightFix"></image></button>
 					</view>
 				</view>
 				<image class="cancel" @tap.stop="dialogDisabled=false" :src="modalClose"></image>
+			</div>
+		</chunLei-modal>
+		<!-- 确定点菜 -->
+		<chunLei-modal v-model="confirmDialog" :mData="allOrders" :type="type" @onConfirm="onConfirm" @cancel="cancel" :navHeight="0">
+			<div class="custom-view" @tap.stop>
+				<view class="hongbao">
+					<view class="pointTxt">
+						<text>恭喜您</text>
+						<view class="points-order-list">
+						<view class="points-order-tenOrder-list">
+							<view class="points-order-tenOrder-dish">
+								<view class="points-order-tenOrder-dish-bg">
+									<view class="points-order-tenOrder-dish-text">
+										{{item.orderName}}
+									</view>
+								</view>
+							</view>
+							<view class="points-order-tenOrder-dish">
+								<view class="pointsJiup">
+									<image :src="jiupIcon" mode="heightFix"></image>
+								<text>X6</text>
+								</view>
+								
+							</view>
+						</view>
+						
+					</view>
+					<text>获得一份{{item.orderName}}，积得{{item.orderNum}}瓶匠心酿造</text>
+					</view>
+					<view class="bottom">
+						<button type="default"><image :src="continueBtn" mode="heightFix"></image></button>
+					</view>
+				</view>
+				<image class="cancel" @tap.stop="confirmDialog=false" :src="modalClose"></image>
 			</div>
 		</chunLei-modal>
 	</view>
@@ -271,14 +301,17 @@ import chunLeiModal from '@/components/chunLei-modal/chunLei-modal.vue'
 				orderEnd: baseImgUrl + 'orderEnd.png',
 				cancleBtn: baseImgUrl + 'cancle.png',
 				successBtn: baseImgUrl + 'success.png',
+				continueBtn: baseImgUrl + 'continue.png',
 				modalClose: baseImgUrl + 'close.png',
 				item: {
 					orderId: '01',
-					orderName: '北京烤鸭'
+					orderName: '北京烤鸭',
+					orderNum: 6
 				},
 				dialogDisabled: false, // 弹框显示隐藏
 				type: 'custom', // 弹框类型
 				allOrders: {}, // 弹框数据
+				confirmDialog: false, // 弹框确认
 			};
 		},
 		methods: {
@@ -287,7 +320,11 @@ import chunLeiModal from '@/components/chunLei-modal/chunLei-modal.vue'
 			},
 			handlePontsOrder(val) {
 				this.dialogDisabled = true
-			}
+			},
+			handleConfirm() {
+				this.dialogDisabled = false
+				this.confirmDialog = true
+			},
 		}
 	}
 </script>
@@ -528,6 +565,15 @@ import chunLeiModal from '@/components/chunLei-modal/chunLei-modal.vue'
 		.points-order-thirtyOrder-list{
 			padding-bottom: 80upx;
 		}
+	}
+}
+.pointsJiup{
+	height: 292upx;
+	align-items: center;
+	text-align: center;
+	image{
+		height: 120upx;
+		line-height: ;
 	}
 }
 </style>
